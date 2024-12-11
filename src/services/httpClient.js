@@ -1,5 +1,7 @@
 const BASE_URL = 'http///localhost.3001';
 
+export { request, login, register };
+
 const request = async (
     endpoint,
     method = 'GET',
@@ -11,7 +13,7 @@ const request = async (
     // Définir les en-têtes
     const headers = {
     'Content-Type': 'application/json',
-    (!isAuthRequest && token && { Authorization: `Bearer ${token}`
+    ...(!isAuthRequest && token && { Authorization: `Bearer ${token}`
     }),
     };
     // Configurer la requête
@@ -45,3 +47,11 @@ const request = async (
     throw error;
     }
     };
+
+    const login = (username, password) => {
+        return request('/login', 'POST', { username, password }, true);
+        };
+        const register = (username, password) => {
+        return request('/register', 'POST', { username, password }, true);
+        };
+
