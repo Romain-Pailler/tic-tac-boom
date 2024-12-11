@@ -18,5 +18,7 @@ function setToken(token){
 }
 
 function getUserIdentity(){
-    
+
 }
+
+export {isAuthenticated, removeToken, setToken, getUserIdentity}
