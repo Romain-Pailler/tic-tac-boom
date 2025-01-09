@@ -1,3 +1,6 @@
+import {jwtDecode} from 'jwt-decode';
+
+
 function isAuthenticated(){
     const token = localStorage.getItem('token');
     if(token){
@@ -18,7 +21,14 @@ function setToken(token){
 }
 
 function getUserIdentity(){
-
+    const token = localStorage.getItem('token');
+    try{
+        const user = jwtDecode(token);
+        return user;
+    }catch(error){
+        console.error("erreur de decodage");
+        return null;
+    }
 }
 
 export { getUserIdentity, isAuthenticated, removeToken, setToken };
