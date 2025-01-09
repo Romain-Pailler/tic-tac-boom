@@ -1,5 +1,19 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { isAuthenticated, removeToken } from '@/services/AuthProvider';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+
+const isLogged = ref(isAuthenticated());
+
+const handleLogOut = () => {
+  removeToken(); 
+  isLogged.value = false;
+  router.push('/login'); 
+};
+
 </script>
 
 <template>
@@ -7,9 +21,10 @@ import { RouterLink, RouterView } from 'vue-router';
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/dashboard">Dashboard</RouterLink>
+        <RouterLink to="/login" v-if="!isLogged">Login</RouterLink>
+        <RouterLink to="/register" v-if="!isLogged">Register</RouterLink>
+        <RouterLink to="/dashboard" v-if="isLogged">Dashboard</RouterLink>
+        <button v-if="isLogged" @click="handleLogOut()">Deconnexion</button>
       </nav>
     </div>
   </header>

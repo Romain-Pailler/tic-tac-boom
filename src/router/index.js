@@ -5,8 +5,8 @@ import { isAuthenticated } from '@/services/AuthProvider';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
-    {path:'/login',component: Login},
-    {path:'/register', name: "Register", component: Register},
+    {path:'/login',component: Login, meta: {requiresGuest: true}},
+    {path:'/register', name: "Register", component: Register, meta: {requiresGuest: true}},
     {path:'/dashboard', name:"Dasboard", component: Dashboard, meta: {requiresAuth: true}}
     ]
 
@@ -19,6 +19,9 @@ router.beforeEach((to,from,next)=>{
   const isLogged = isAuthenticated();
   if(to.meta.requiresAuth && !isLogged){
     return next('/login');
+  }
+  if(to.meta.requiresGuest && isLogged){
+    return next('/dashboard');
   }
   next();
 })
