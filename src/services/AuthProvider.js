@@ -12,7 +12,7 @@ function isAuthenticated(){
 
 function removeToken(){
     if(isAuthenticated()){
-        localStorage.removeItem(token);
+        localStorage.removeItem('token');
     }
 }
 
