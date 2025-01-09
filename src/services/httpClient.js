@@ -1,6 +1,4 @@
-const BASE_URL = 'http///localhost.3001';
-
-export { request, login, register };
+const BASE_URL = 'http://localhost:3001';
 
 const request = async (
     endpoint,
@@ -54,4 +52,6 @@ const request = async (
     const register = (username, password) => {
         return request('/register', 'POST', { username, password }, true);
         };
+
+export { request, login, register };
 

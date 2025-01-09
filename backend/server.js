@@ -74,6 +74,7 @@ const writeJsonFile = async (filePath, data) => {
 // Routes d'authentification
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
+    console.log('QQqSQ')
     const users = await readJsonFile(USERS_FILE);
 
     if (users.find((u) => u.username === username)) {
