@@ -14,11 +14,11 @@ function removeToken(){
 }
 
 function setToken(token){
-    localStorage.setItem('token', token)
+    localStorage.setItem('token', JSON.stringify(token))
 }
 
 function getUserIdentity(){
 
 }
 
-export {isAuthenticated, removeToken, setToken, getUserIdentity}
+export { getUserIdentity, isAuthenticated, removeToken, setToken };

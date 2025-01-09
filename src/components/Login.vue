@@ -31,5 +31,4 @@ import { login } from '@/services/httpClient.js';
         <button type="submit">Connexion</button>
     </form>
     <p v-if="error">{{this.error}}</p>
-    <p>{{username}} et  {{password}}</p>
 </template>
