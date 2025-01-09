@@ -14,6 +14,7 @@ import { login } from '@/services/httpClient.js';
                 try {
                     const token = await login(this.username,this.password)
                     setToken(token)
+                    this.$router.push("/dashboard");
                 } catch (err) {
                     console.log(err)
                     this.error = err.message || "Une erreur s'est produite lors de la connexion."
