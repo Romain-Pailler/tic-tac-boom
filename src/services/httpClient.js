@@ -10,6 +10,7 @@ const request = async (
     ) => {
     // Récupérer le token
     const token = localStorage.getItem('token');
+    console.log('Token:', token);
     // Définir les en-têtes
     const headers = {
     'Content-Type': 'application/json',
