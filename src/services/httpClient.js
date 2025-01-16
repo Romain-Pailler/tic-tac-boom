@@ -55,7 +55,7 @@ const request = async (
     const register = (username, password) => {
         return request('/register', 'POST', { username, password }, false);
         };
-    const getUser = (id) => {
+    const getUser = async (id) => {
         return request(`/user/${id}`,'GET',null,true);
     };
     const updateUser = (username,password) => {
