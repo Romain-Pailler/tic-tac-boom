@@ -10,11 +10,10 @@ const request = async (
     ) => {
     // Récupérer le token
     const token = localStorage.getItem('token');
-    console.log('Token:', token);
     // Définir les en-têtes
     const headers = {
     'Content-Type': 'application/json',
-    ...(isAuthRequest && token && { Authorization: `Bearer ${token}`
+    ...(isAuthRequest && token && { Authorization: `Bearer ${JSON.parse(token).token}`
     }),
     };
     // Configurer la requête
@@ -28,9 +27,9 @@ const request = async (
     // Envoyer la requête
     const response = await fetch(`${BASE_URL}${endpoint}`, config);
     if (response.status === 403 || response.status === 401) {
-    // Token expired or invalid, remove token and redirect to login
-    removeToken();
-    window.location.href = '/login';
+    // // Token expired or invalid, remove token and redirect to login
+    // removeToken();
+    // window.location.href = '/login';
     return;
     }
     // Gérer la réponse
