@@ -1,7 +1,8 @@
 import Dashboard from '@/components/Dashboard.vue';
+import Game from '@/components/Game.vue';
 import Login from '@/components/Login.vue';
-import Register from '@/components/Register.vue';
 import Profil from '@/components/Profil.vue';
+import Register from '@/components/Register.vue';
 import { isAuthenticated } from '@/services/AuthProvider';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -9,7 +10,8 @@ const routes = [
     {path:'/login',component: Login, meta: {requiresGuest: true}},
     {path:'/register', name: "Register", component: Register, meta: {requiresGuest: true}},
     {path:'/dashboard', name:"Dasboard", component: Dashboard, meta: {requiresAuth: true}},
-    {path:'/profil',name:"Profil", component: Profil, meta: {requiresAuth: true}}
+    {path:'/profil',name:"Profil", component: Profil, meta: {requiresAuth: true}},
+    {path:'/game/:id',name:"Game",component: Game,meta:{requiresAuth:true}}
     ]
 
 const router = createRouter({

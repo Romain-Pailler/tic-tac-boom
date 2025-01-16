@@ -5,7 +5,7 @@
         <div>
             <p v-if="allGames.length === 0">Pas de parties lancés</p>
             <ul>
-                <li v-for="game in this.allGames" :key="game.id">{{game.id}} <button @click="deleteGames(game.id)"> Delete</button></li>
+                <li v-for="game in this.allGames" :key="game.id">ID : {{game.id}} <br/> STATUS : {{game.status}} <button @click="this.joinGames(game.id)">Join</button> <button @click="deleteGames(game.id)">Delete</button></li>
             </ul>
         </div>
         <div>
@@ -16,7 +16,9 @@
 
 <script>
 import { getUserIdentity } from '@/services/AuthProvider.js';
-import { createGames, deleteGames, getGames } from '@/services/httpClient';
+import { createGames, deleteGames, getGames, joinGames } from '@/services/httpClient';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 export default {
         data() {
             return {
@@ -48,6 +50,10 @@ export default {
         async deleteGames(id){
             await deleteGames(id);
             await this.fetchGames();
+        },
+        async joinGames(id){
+            await joinGames(id);
+            this.$router.push({ name: 'Game', params: { id: id } });
         }
     }
 }
