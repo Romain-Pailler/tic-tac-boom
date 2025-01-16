@@ -50,10 +50,10 @@ const request = async (
     };
 
     const login = (username, password) => {
-        return request('/login', 'POST', { username, password }, true);
+        return request('/login', 'POST', { username, password }, false);
         };
     const register = (username, password) => {
-        return request('/register', 'POST', { username, password }, true);
+        return request('/register', 'POST', { username, password }, false);
         };
     const getUser = (id) => {
         return request(`/user/${id}`,'GET',null,true);
