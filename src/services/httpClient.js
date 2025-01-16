@@ -67,10 +67,10 @@ const request = async (
         return request('/games/','POST',null,true);
     };
     const joinGames = (id) => {
-        return request(`/games/gameId=${id}/join`,'POST',null,true);
+        return request(`/games/${id}/join`,'POST',null,true);
     };
     const deleteGames = (id) => {
-        return request(`/games/gameId=${id}`,'DELETE',null,true);
+        return request(`/games/${id}`,'DELETE',null,true);
     }
 
 
