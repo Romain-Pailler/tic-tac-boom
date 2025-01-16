@@ -23,7 +23,6 @@ const request = async (
     ...(body && { body: JSON.stringify(body) }),
     };
     try {
-    console.log(`${BASE_URL}${endpoint}`);
     // Envoyer la requête
     const response = await fetch(`${BASE_URL}${endpoint}`, config);
     if (response.status === 403 || response.status === 401) {

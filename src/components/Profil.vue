@@ -1,16 +1,43 @@
 <template>
     <div>
-      <h1>Mon Profil</h1>
+      <h1>Profil de {{ user.username }}</h1>
       <form @submit.prevent="saveProfile">
-        <div>
-          <label for="name">Nom</label>
-          <input id="name" v-model="user.name" type="text" />
+        <div v-if="editing">
+          <label for="name">Nom actuel</label>
+          <input id="name" v-model="user.username" type="text" />
         </div>
-        <button type="submit">Enregistrer</button>
+        <div v-else>
+          <p>Nom actuel : {{ user.username }}</p>
+        </div>
+        <div v-if="editing">
+          <label for="password">Mot de passe :</label>
+          <input id="password" v-model="user.password" type="password" />
+        </div>
+        <button type="submit" v-if="editing">Enregistrer</button>
+        <button type="button" @click="toggleEdit">{{ editing ? 'Annuler' : 'Modifier' }}</button>
       </form>
-      <button @click="logout">Se déconnecter</button>
+      <button v-if="isLogged" @click="handleLogOut()">Deconnexion</button>
     </div>
   </template>
+
+
+<script setup>
+import { isAuthenticated, removeToken } from '@/services/AuthProvider';
+import { ref } from 'vue';
+import { RouterLink, useRouter } from 'vue-router';
+
+const router = useRouter();
+
+
+const isLogged = ref(isAuthenticated());
+
+const handleLogOut = () => {
+  removeToken(); 
+  isLogged.value = false;
+  router.push('/login'); 
+};
+
+</script>
 
 <script>
 
@@ -21,8 +48,10 @@ export default {
   data() {
     return {
       user: {
-        name: '',
+        username: '',
+        password: ''
       },
+      editing: false,
     };
   },
   async created() {
@@ -31,14 +60,22 @@ export default {
         throw new Error('ID utilisateur introuvable');
       }
       const user = await getUser(userID);
-      this.user = user;
+      if (user) {
+      this.user = { ...user };
+    } else {
+      throw new Error('Utilisateur introuvable');
+    }
   },
   methods: {
     async saveProfile() {
-      const updatedUser = await updateUser(this.user);
+      const updatedUser = await updateUser(this.user.username, this.user.password);
       this.user = updatedUser;
-      this.$router.push('/');
+      this.editing =false;
     },
+    toggleEdit() {
+      this.editing = !this.editing;
+    },
+    
 }
 }
 
