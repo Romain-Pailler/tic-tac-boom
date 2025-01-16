@@ -26,9 +26,9 @@ const request = async (
     // Envoyer la requête
     const response = await fetch(`${BASE_URL}${endpoint}`, config);
     if (response.status === 403 || response.status === 401) {
-    // // Token expired or invalid, remove token and redirect to login
-    // removeToken();
-    // window.location.href = '/login';
+    // Token expired or invalid, remove token and redirect to login
+    removeToken();
+    window.location.href = '/login';
     return;
     }
     // Gérer la réponse
@@ -61,16 +61,16 @@ const request = async (
         return request('/user','PUT',{username,password},true)
     };
     const getGames = () => {
-        return request('/games/','GET',{},true); 
+        return request('/games/','GET',null,true); 
     };
     const createGames = () => {
-        return request('/games/','POST',{},true);
+        return request('/games/','POST',null,true);
     };
     const joinGames = (id) => {
-        return request(`/games/gameId=${id}/join`,'POST',{},true);
+        return request(`/games/gameId=${id}/join`,'POST',null,true);
     };
     const deleteGames = (id) => {
-        return request(`/games/gameId=${id}`,'DELETE',{},true);
+        return request(`/games/gameId=${id}`,'DELETE',null,true);
     }
 
 
