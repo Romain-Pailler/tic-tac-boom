@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "id": "780af9ee-02c4-4a12-a6c2-b0ce1cd27c88",
+    "creator": "3ce538d5-85ea-416b-a85c-c4bf9a59f7f2",
+    "player1": "3ce538d5-85ea-416b-a85c-c4bf9a59f7f2",
+    "player2": null,
+    "board": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "status": "waiting",
+    "currentPlayer": "3ce538d5-85ea-416b-a85c-c4bf9a59f7f2"
+  }
+]
