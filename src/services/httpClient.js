@@ -13,7 +13,7 @@ const request = async (
     // Définir les en-têtes
     const headers = {
     'Content-Type': 'application/json',
-    ...(!isAuthRequest && token && { Authorization: `Bearer ${token}`
+    ...(isAuthRequest && token && { Authorization: `Bearer ${token}`
     }),
     };
     // Configurer la requête
@@ -56,7 +56,7 @@ const request = async (
         return request('/register', 'POST', { username, password }, true);
         };
     const getUser = (id) => {
-        return request(`/user/${id}`,'GET',null,false);
+        return request(`/user/${id}`,'GET',null,true);
     };
     const updateUser = (username,password) => {
         return request('/user','PUT',{username,password},true)
