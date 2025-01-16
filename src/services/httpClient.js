@@ -53,22 +53,22 @@ const request = async (
         return request('/register', 'POST', { username, password }, true);
         };
     const getUser = (id) => {
-        return request(`/user/id=${id}`,'GET',null,true);
+        return request(`/user/${id}`,'GET',null,true);
     };
     const updateUser = (username,password) => {
         return request('/user','PUT',{username,password},true)
     };
     const getGames = () => {
-        return request('games/','GET',{},true);
+        return request('/games/','GET',{},true);
     };
     const createGames = () => {
-        return request('games/','POST',{},true);
+        return request('/games/','POST',{},true);
     };
     const joinGames = (id) => {
-        return request(`games/gameId=${id}/join`,'POST',{},true);
+        return request(`/games/gameId=${id}/join`,'POST',{},true);
     };
     const deleteGames = (id) => {
-        return request(`games/gameId=${id}`,'DELETE',{},true);
+        return request(`/games/gameId=${id}`,'DELETE',{},true);
     }
 
 
