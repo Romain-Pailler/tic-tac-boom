@@ -3,5 +3,15 @@
     "id": "d921aabe-ca5e-48ca-8c16-f6282ff8f0ea",
     "username": "Gaetan",
     "password": "$2a$10$CClL8fZnlBtchoLQqRF4bOa0vf.ubZh9MfuRmeKutK8s2egikPAey"
+  },
+  {
+    "id": "28165ccc-05c3-4ec3-bc0f-9b4bc469dcc6",
+    "username": "j1",
+    "password": "$2a$10$N11pp1Ir3vbC28aGyPRlh.sgPXPMdkw2OzVyiKC04votgn4HPWjei"
+  },
+  {
+    "id": "e3fa745d-0551-4175-8dc9-df5ccac386ca",
+    "username": "g",
+    "password": "$2a$10$RMSEIilk3MZ37QKTbGJcFORCwzLBxIdLjSmpYWRDNJVif8K50q9GC"
   }
 ]

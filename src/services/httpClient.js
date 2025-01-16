@@ -23,7 +23,7 @@ const request = async (
     ...(body && { body: JSON.stringify(body) }),
     };
     try {
-    console.log(`${BASE_URL}${endpoint}`)
+    console.log(`${BASE_URL}${endpoint}`);
     // Envoyer la requête
     const response = await fetch(`${BASE_URL}${endpoint}`, config);
     if (response.status === 403 || response.status === 401) {
@@ -62,7 +62,7 @@ const request = async (
         return request('/user','PUT',{username,password},true)
     };
     const getGames = () => {
-        return request('/games/','GET',{},true);
+        return request('/games/','GET',{},true); 
     };
     const createGames = () => {
         return request('/games/','POST',{},true);

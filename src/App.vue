@@ -1,7 +1,7 @@
 <script setup>
 import { isAuthenticated, removeToken } from '@/services/AuthProvider';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 
 const router = useRouter();
 
@@ -24,6 +24,7 @@ const handleLogOut = () => {
         <RouterLink to="/login" v-if="!isLogged">Login</RouterLink>
         <RouterLink to="/register" v-if="!isLogged">Register</RouterLink>
         <RouterLink to="/dashboard" v-if="isLogged">Dashboard</RouterLink>
+        <RouterLink to="/profil" v-if="isLogged">Profil</RouterLink>
         <button v-if="isLogged" @click="handleLogOut()">Deconnexion</button>
       </nav>
     </div>
