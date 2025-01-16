@@ -57,7 +57,17 @@ const request = async (
     };
     const updateUser = (username,password) => {
         return request('/user','PUT',{username,password},true)
-    }
+    };
+    const getGames = () => {
+        return request('games/','GET',{},true);
+    };
+    const createGames = () => {
+        return request('games/','POST',{},true);
+    };
+    const joinGames = (id) => {
+        return request(`games/gameId=${id}/join`,'POST',{},true);
+    };
 
-export { getUser, login, register, request, updateUser };
+
+export { createGames, getGames, getUser, login, register, request, updateUser };
 
