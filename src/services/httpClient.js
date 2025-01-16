@@ -52,6 +52,12 @@ const request = async (
     const register = (username, password) => {
         return request('/register', 'POST', { username, password }, true);
         };
+    const getUser = (id) => {
+        return request(`/user/id=${id}`,'GET',{},true);
+    };
+    const updateUser = (username,password) => {
+        return request('/user','PUT',{username,password},true)
+    }
 
-export { request, login, register };
+export { getUser, login, register, request, updateUser };
 
