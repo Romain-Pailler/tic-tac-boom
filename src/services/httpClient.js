@@ -67,7 +67,10 @@ const request = async (
     const joinGames = (id) => {
         return request(`games/gameId=${id}/join`,'POST',{},true);
     };
+    const deleteGames = (id) => {
+        return request(`games/gameId=${id}`,'DELETE',{},true);
+    }
 
 
-export { createGames, getGames, getUser, login, register, request, updateUser };
+export { createGames, deleteGames, getGames, getUser, joinGames, login, register, request, updateUser };
 
