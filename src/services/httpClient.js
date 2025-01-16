@@ -53,7 +53,7 @@ const request = async (
         return request('/register', 'POST', { username, password }, true);
         };
     const getUser = (id) => {
-        return request(`/user/id=${id}`,'GET',{},true);
+        return request(`/user/id=${id}`,'GET',null,true);
     };
     const updateUser = (username,password) => {
         return request('/user','PUT',{username,password},true)
