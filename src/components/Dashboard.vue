@@ -16,7 +16,7 @@
 
 <script>
 import { getUserIdentity } from '@/services/AuthProvider.js';
-import { createGames, deleteGames, getGames, joinGames } from '@/services/httpClient';
+import { createGames, deleteGames, getGames, joinGames, getGamesById} from '@/services/httpClient';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 export default {
@@ -52,8 +52,17 @@ export default {
             await this.fetchGames();
         },
         async joinGames(id){
-            await joinGames(id);
-            this.$router.push({ name: 'Game', params: { id: id } });
+            try {
+                const gameDetails = await getGamesById(id);
+                if (gameDetails.player1 === getUserIdentity().id || gameDetails.player2 === getUserIdentity().id) {
+                    this.$router.push({ name: 'Game', params: { id: id } });
+                } else {
+                    await joinGames(game.id);
+                    this.$router.push({ name: 'Game', params: { id: id } });
+                }
+            } catch (error) {
+                console.error('Erreur lors de la tentative de rejoindre la partie:', error);
+            }
         }
     }
 }

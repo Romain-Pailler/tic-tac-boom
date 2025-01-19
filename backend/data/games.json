@@ -1,16 +1,9 @@
 [
   {
-<<<<<<< HEAD
-    "id": "780af9ee-02c4-4a12-a6c2-b0ce1cd27c88",
-    "creator": "3ce538d5-85ea-416b-a85c-c4bf9a59f7f2",
-    "player1": "3ce538d5-85ea-416b-a85c-c4bf9a59f7f2",
-    "player2": "11449578-a1bf-44c7-a29c-86999091d866",
-=======
-    "id": "a6ebcfc1-5350-49ac-ad5d-3978bf570457",
-    "creator": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "player1": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+    "id": "aab48686-2f07-4044-b5d4-986f970f23d0",
+    "creator": "11449578-a1bf-44c7-a29c-86999091d866",
+    "player1": "11449578-a1bf-44c7-a29c-86999091d866",
     "player2": null,
->>>>>>> bf89e8b54b9262a722e32905f2499c73f892e550
     "board": [
       null,
       null,
@@ -22,69 +15,7 @@
       null,
       null
     ],
-<<<<<<< HEAD
-    "status": "in_progress",
-    "currentPlayer": "3ce538d5-85ea-416b-a85c-c4bf9a59f7f2"
-=======
     "status": "waiting",
-    "currentPlayer": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
-  },
-  {
-    "id": "38f1b03b-3d36-4fcc-a188-41013baface2",
-    "creator": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "player1": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "player2": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "board": [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    "status": "in_progress",
-    "currentPlayer": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
-  },
-  {
-    "id": "a09f22e0-3b9b-4928-a97a-6da389d1dedb",
-    "creator": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "player1": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "player2": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "board": [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    "status": "in_progress",
-    "currentPlayer": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
-  },
-  {
-    "id": "6b9a3f86-9d75-42da-9de5-158be9020f91",
-    "creator": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "player1": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "player2": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-    "board": [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    "status": "in_progress",
-    "currentPlayer": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
->>>>>>> bf89e8b54b9262a722e32905f2499c73f892e550
+    "currentPlayer": "11449578-a1bf-44c7-a29c-86999091d866"
   }
 ]

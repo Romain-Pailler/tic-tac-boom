@@ -79,9 +79,9 @@ const request = async (
         return request(`/games/${id}/move/${row}/${col}`);
     }
     const getGamesById = (id) => {
-        return request(`games/${id}`, 'GET',null, true);
+        return request(`/games/${id}`, 'GET',null, true);
     }
 
 
-export { createGames, deleteGames, fetchGameDetails, getGames, getUser, joinGames, login, playMove, register, request, updateUser };
+export { createGames, deleteGames, fetchGameDetails, getGames, getUser, joinGames,getGamesById, login, playMove, register, request, updateUser };
 
