@@ -71,8 +71,14 @@ const request = async (
     };
     const deleteGames = (id) => {
         return request(`/games/${id}`,'DELETE',null,true);
+    };
+    const fetchGameDetails = (id) => {
+        return request(`/games/${id}`, 'GET',null,true);
+    }
+    const playMove = (id,row,col) => {
+        return request(`/games/${id}/move/${row}/${col}`);
     }
 
 
-export { createGames, deleteGames, getGames, getUser, joinGames, login, register, request, updateUser };
+export { createGames, deleteGames, fetchGameDetails, getGames, getUser, joinGames, login, playMove, register, request, updateUser };
 
