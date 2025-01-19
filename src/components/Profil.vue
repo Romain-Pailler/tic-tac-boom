@@ -24,7 +24,7 @@
 <script setup>
 import { isAuthenticated, removeToken } from '@/services/AuthProvider';
 import { ref } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
+import {useRouter } from 'vue-router';
 
 const router = useRouter();
 

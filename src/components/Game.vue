@@ -2,8 +2,7 @@
     <div>
         <h1>Détails de la partie</h1>
         <p>ID du jeu : {{ gameId }}</p>
-        <!-- Ajoute d'autres détails du jeu si besoin -->
-    </div>
+        </div>
 </template>
 
 <script>
@@ -14,7 +13,6 @@ export default {
         };
     },
     mounted() {
-        // Récupération de l'ID depuis les paramètres de la route
         this.gameId = this.$route.params.id;
 
         // Optionnel : récupérer les détails du jeu depuis l'API
@@ -24,7 +22,7 @@ export default {
     methods: {
         async fetchGameDetails(id) {
             try {
-                const gameDetails = await getGameDetails(id); // Implémente getGameDetails dans ton service
+                const gameDetails = await getGameDetails(id);
                 console.log(gameDetails);
             } catch (error) {
                 console.error('Erreur lors de la récupération des détails du jeu:', error);
