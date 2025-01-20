@@ -76,12 +76,12 @@ const request = async (
         return request(`/games/${id}`, 'GET',null,true);
     }
     const playMove = (id,row,col) => {
-        return request(`/games/${id}/move/${row}/${col}`);
+        return request(`/games/${id}/move/${row}/${col}`,'POST',null,true);
     }
     const getGamesById = (id) => {
         return request(`/games/${id}`, 'GET',null, true);
     }
 
 
-export { createGames, deleteGames, fetchGameDetails, getGames, getUser, joinGames,getGamesById, login, playMove, register, request, updateUser };
+export { createGames, deleteGames, fetchGameDetails, getGames, getGamesById, getUser, joinGames, login, playMove, register, request, updateUser };
 

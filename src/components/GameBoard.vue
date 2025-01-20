@@ -1,6 +1,6 @@
 <template>
     <div class="board">
-        <div v-for="(row, rowIndex) in board" :key="rowIndex" class="row">
+        <div v-for="(row, rowIndex) in formattedBoard" :key="rowIndex" class="row">
             <div
                 v-for="(cell, colIndex) in row"
                 :key="colIndex"
@@ -17,17 +17,57 @@
 <script>
 export default {
     props: {
-        board: Array,
-        currentPlayer: String,
-        userId: String,
+        board: {
+            type: Array,
+            required: true,
+            validator(value) {
+                return value.length === 3 && value.every(row => Array.isArray(row) && row.length === 3);
+            },
+        },
+        currentPlayer: {
+            type: String,
+            required: true,
+        },
+    },
+    computed: {
+        /**
+         * Transforme les valeurs du board pour afficher "X" ou "O" au lieu des IDs.
+         * @returns {Array} Le tableau formaté.
+         */
+        formattedBoard() {
+            return this.board.map(row =>
+                row.map(cell => {
+                    if (cell === "player1") return "X";
+                    if (cell === "player2") return "O";
+                    return "";
+                })
+            );
+        },
     },
     methods: {
-        canPlay(row, col) {
-            return !this.board[row][col] && this.currentPlayer === this.userId;
+        /**
+         * Vérifie si un joueur peut jouer à une position donnée.
+         * @param {number} rowIndex - Index de la ligne.
+         * @param {number} colIndex - Index de la colonne.
+         * @returns {boolean} - True si la case est jouable, sinon false.
+         */
+        canPlay(rowIndex, colIndex) {
+            return (
+                !this.board[rowIndex][colIndex] && this.currentPlayer // Case vide et joueur valide
+            );
         },
-        play(row, col) {
-            if (this.canPlay(row, col)) {
-                this.$emit('play', { row, col });
+        /**
+         * Gestion du clic sur une case.
+         * @param {number} rowIndex - Index de la ligne.
+         * @param {number} colIndex - Index de la colonne.
+         */
+        play(rowIndex, colIndex) {
+            console.log("Clic détecté sur la case :", { rowIndex, colIndex });
+            if (this.canPlay(rowIndex, colIndex)) {
+                console.log("Case jouable, émission de l'événement.");
+                this.$emit("play", { row: rowIndex, col: colIndex });
+            } else {
+                console.log("Case non jouable ou clic ignoré.");
             }
         },
     },
@@ -37,7 +77,7 @@ export default {
 <style>
 .board {
     display: grid;
-    gap: 10px;
+    gap: 5px;
 }
 .row {
     display: flex;
@@ -48,7 +88,9 @@ export default {
     border: 1px solid black;
     text-align: center;
     line-height: 50px;
-    cursor: pointer;
+    font-size: 1.5rem;
+    cursor: default;
+    background-color: white;
 }
 .cell.clickable {
     background-color: lightblue;

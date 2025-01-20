@@ -1,21 +1,21 @@
 [
   {
-    "id": "aab48686-2f07-4044-b5d4-986f970f23d0",
-    "creator": "11449578-a1bf-44c7-a29c-86999091d866",
-    "player1": "11449578-a1bf-44c7-a29c-86999091d866",
-    "player2": null,
+    "id": "0ddedfa2-ad25-4766-b2ef-6101817358c1",
+    "creator": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+    "player1": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+    "player2": "0bb5258c-31c1-4a45-b7a3-6461a1005841",
     "board": [
+      "72ba894a-318f-4af2-b9b9-512a6971ba3d",
       null,
       null,
       null,
-      null,
-      null,
+      "0bb5258c-31c1-4a45-b7a3-6461a1005841",
       null,
       null,
       null,
       null
     ],
-    "status": "waiting",
-    "currentPlayer": "11449578-a1bf-44c7-a29c-86999091d866"
+    "status": "in_progress",
+    "currentPlayer": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
   }
 ]
