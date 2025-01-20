@@ -6,16 +6,17 @@
     "player2": "0bb5258c-31c1-4a45-b7a3-6461a1005841",
     "board": [
       "72ba894a-318f-4af2-b9b9-512a6971ba3d",
-      null,
-      null,
+      "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+      "72ba894a-318f-4af2-b9b9-512a6971ba3d",
       null,
       "0bb5258c-31c1-4a45-b7a3-6461a1005841",
-      null,
+      "0bb5258c-31c1-4a45-b7a3-6461a1005841",
       null,
       null,
       null
     ],
-    "status": "in_progress",
-    "currentPlayer": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
+    "status": "finished",
+    "currentPlayer": "0bb5258c-31c1-4a45-b7a3-6461a1005841",
+    "winner": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
   }
 ]

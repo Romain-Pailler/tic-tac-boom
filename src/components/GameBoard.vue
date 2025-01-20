@@ -63,9 +63,7 @@ export default {
          * @param {number} colIndex - Index de la colonne.
          */
         play(rowIndex, colIndex) {
-            console.log("Clic détecté sur la case :", { rowIndex, colIndex });
             if (this.canPlay(rowIndex, colIndex)) {
-                console.log("Case jouable, émission de l'événement.");
                 this.$emit("play", { row: rowIndex, col: colIndex });
             } else {
                 console.log("Case non jouable ou clic ignoré.");

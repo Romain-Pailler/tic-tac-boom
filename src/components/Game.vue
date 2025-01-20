@@ -6,7 +6,8 @@
         <player-info 
             :playerNames="playerNames" 
             :currentPlayer="currentPlayer" 
-            :waitingPlayer="!gameState?.player2" 
+            :waitingPlayer="!gameState?.player2"
+            :winner="winner"
         />
         <div v-if="isLoading">Chargement...</div>
         <game-board 
@@ -16,7 +17,6 @@
             :players="playerNames"
             @play="handlePlay" 
         />
-        <p v-if="winner">Le gagnant est : {{ winner }}</p>
         <!-- Message d'erreur si une erreur survient -->
         <p v-if="error" class="error">{{ error }}</p>
     </div>
@@ -74,7 +74,7 @@ export default {
                     console.warn("Données de tableau invalides :", game.board);
                 }
 
-                this.winner = game.status === 'finished' ? this.getWinner(game.board) : null;
+                this.winner = game.winner;
                 this.playerNames = {
                     player1: game.player1,
                     player2: game.player2 || "En attente...",
@@ -92,10 +92,6 @@ export default {
                 [flatBoard[3], flatBoard[4], flatBoard[5]],
                 [flatBoard[6], flatBoard[7], flatBoard[8]],
             ];
-        },
-        getWinner(board) {
-            // Implémentez la logique pour vérifier le gagnant.
-            return null;
         },
         async handlePlay(position) {
             if (this.winner || this.isLoading) return;
