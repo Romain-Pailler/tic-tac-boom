@@ -57,7 +57,7 @@ export default {
                 if (gameDetails.player1 === getUserIdentity().id || gameDetails.player2 === getUserIdentity().id) {
                     this.$router.push({ name: 'Game', params: { id: id } });
                 } else {
-                    await joinGames(game.id);
+                    await joinGames(id);
                     this.$router.push({ name: 'Game', params: { id: id } });
                 }
             } catch (error) {
