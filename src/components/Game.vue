@@ -13,6 +13,7 @@
             v-else-if="board && Array.isArray(board) && board.length === 3" 
             :board="board" 
             :currentPlayer="currentPlayer" 
+            :players="playerNames"
             @play="handlePlay" 
         />
         <p v-if="winner">Le gagnant est : {{ winner }}</p>

@@ -28,6 +28,7 @@ export default {
             type: String,
             required: true,
         },
+        players:Object
     },
     computed: {
         /**
@@ -37,8 +38,8 @@ export default {
         formattedBoard() {
             return this.board.map(row =>
                 row.map(cell => {
-                    if (cell === "player1") return "X";
-                    if (cell === "player2") return "O";
+                    if (cell === this.players.player1) return "X";
+                    if (cell === this.players.player2) return "O";
                     return "";
                 })
             );
@@ -91,6 +92,7 @@ export default {
     font-size: 1.5rem;
     cursor: default;
     background-color: white;
+    color: black;
 }
 .cell.clickable {
     background-color: lightblue;
