@@ -18,5 +18,43 @@
     "status": "finished",
     "currentPlayer": "0bb5258c-31c1-4a45-b7a3-6461a1005841",
     "winner": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
+  },
+  {
+    "id": "f2448370-5204-4086-b8b5-ee13362d8231",
+    "creator": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+    "player1": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+    "player2": null,
+    "board": [
+      null,
+      null,
+      "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "status": "waiting",
+    "currentPlayer": null
+  },
+  {
+    "id": "1e48f277-a794-42f2-8051-468e18e83b98",
+    "creator": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+    "player1": "72ba894a-318f-4af2-b9b9-512a6971ba3d",
+    "player2": null,
+    "board": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "status": "waiting",
+    "currentPlayer": "72ba894a-318f-4af2-b9b9-512a6971ba3d"
   }
 ]

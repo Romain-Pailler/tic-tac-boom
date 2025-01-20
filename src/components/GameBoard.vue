@@ -54,7 +54,7 @@ export default {
          */
         canPlay(rowIndex, colIndex) {
             return (
-                !this.board[rowIndex][colIndex] && this.currentPlayer // Case vide et joueur valide
+                !this.board[rowIndex][colIndex] && this.currentPlayer && this?.player2 // Case vide et joueur valide
             );
         },
         /**
