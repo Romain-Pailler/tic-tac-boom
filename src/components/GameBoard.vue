@@ -1,7 +1,7 @@
 <template>
     <div class="board">
         <!-- Affichage d'un message d'erreur si ce n'est pas à votre tour -->
-        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+        <div v-if="!isYourTurn" class="error-message">{{ errorMessage }}</div>
         
         <div v-for="(row, rowIndex) in formattedBoard" :key="rowIndex" class="row">
             <div
@@ -31,11 +31,12 @@ export default {
             type: String,
             required: true,
         },
-        players: Object
+        players: Object,
+        isYourTurn:Boolean
     },
     data() {
         return {
-            errorMessage: "",
+            errorMessage: "Ce n'est pas votre tour, vous ne pouvez pas jouer.",
         };
     },
     computed: {
@@ -46,8 +47,8 @@ export default {
         formattedBoard() {
             return this.board.map(row =>
                 row.map(cell => {
-                    if (cell === this.players.player1) return "X";
-                    if (cell === this.players.player2) return "O";
+                    if (cell === this.players.player1.id) return "X";
+                    if (cell === this.players.player2.id) return "O";
                     return "";
                 })
             );
@@ -61,11 +62,10 @@ export default {
          * @returns {boolean} - True si la case est jouable, sinon false.
          */
         canPlay(rowIndex, colIndex) {
-            if (this.players.player2 === "En attente...") {
+            if (this.players.player2.username === "En attente...") {
                 return false;
             }
-
-            const isCurrentPlayerValid = this.currentPlayer === this.players.player1 || this.currentPlayer === this.players.player2;
+            const isCurrentPlayerValid = this.currentPlayer === this.players.player1.id || this.currentPlayer === this.players.player2.id;
             return (
                 !this.board[rowIndex][colIndex] && isCurrentPlayerValid
             );
@@ -76,11 +76,6 @@ export default {
          * @param {number} colIndex - Index de la colonne.
          */
         play(rowIndex, colIndex) {
-            if (this.currentPlayer !== this.players.player1 && this.currentPlayer !== this.players.player2) {
-                this.errorMessage = "Ce n'est pas votre tour, vous ne pouvez pas jouer.";
-                return;
-            }
-
             if (this.canPlay(rowIndex, colIndex)) {
                 this.$emit("play", { row: rowIndex, col: colIndex });
             } else {

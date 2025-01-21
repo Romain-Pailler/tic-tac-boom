@@ -4,7 +4,7 @@
         <h1>Tic Tac Toe</h1>
         <!-- Composant player-info -->
         <player-info 
-            :playerNames="playerNames" 
+            :playerNames="players" 
             :currentPlayer="currentPlayer" 
             :waitingPlayer="!gameState?.player2"
             :winner="winner"
@@ -14,7 +14,8 @@
             v-else-if="board && Array.isArray(board) && board.length === 3" 
             :board="board" 
             :currentPlayer="currentPlayer" 
-            :players="playerNames"
+            :players="players"
+            :isYourTurn="canPlay"
             @play="handlePlay" 
         />
         <!-- Message d'erreur si une erreur survient -->
@@ -25,7 +26,7 @@
 <script>
 import GameBoard from '@/components/GameBoard.vue';
 import PlayerInfo from '@/components/PlayerInfo.vue';
-import { fetchGameDetails, playMove } from '@/services/httpClient.js';
+import { fetchGameDetails, getUser, playMove } from '@/services/httpClient.js';
 
 export default {
     components: { PlayerInfo, GameBoard },
@@ -43,10 +44,11 @@ export default {
             error: null,
             isLoading: false,
             polling: null,
-            playerNames: {
-                player1: null,
-                player2: null,
+            players: {
+                player1: {id:null,username:null},
+                player2: {id:null,username:null},
             },
+            canPlay:true
         };
     },
     async created() {
@@ -62,7 +64,6 @@ export default {
             this.isLoading = true;
             try {
                 const game = await fetchGameDetails(this.gameId);
-                console.log("Données du jeu récupérées :", game);
 
                 this.gameState = game;
                 this.currentPlayer = game.currentPlayer;
@@ -75,11 +76,10 @@ export default {
                 }
 
                 this.winner = game.winner;
-                this.playerNames = {
-                    player1: game.player1,
-                    player2: game.player2 || "En attente...",
-                };
+                this.players.player1.id = game.player1;
 
+                this.players.player2.id = game.player2 || null;
+                this.getPlayersNames();
                 if (this.isBoardFull() && !this.winner) {
                     this.winner = "Égalité";
                 }
@@ -92,6 +92,16 @@ export default {
                 console.error(error);
             } finally {
                 this.isLoading = false;
+            }
+        },
+        async getPlayersNames(){
+            const player1 = await getUser(this.players.player1.id);
+            this.players.player1.username = player1.username;
+            if (this.players.player2.id) {
+                const player2 = await getUser(this.players.player2.id);
+                this.players.player2.username = player2.username;   
+            }else{
+                this.players.player2.username = "En attente...";
             }
         },
         formatBoard(flatBoard) {
@@ -108,15 +118,16 @@ export default {
             try {
                 await playMove(this.gameId, position.row, position.col); 
                 await this.fetchGameState();
+                this.canPlay = true;
             } catch (error) {
-                console.error('Erreur lors du jeu :', error);
+                this.canPlay = false;
             } finally {
                 this.isLoading = false;
             }
         },
         startPolling() {
             if (this.polling) return;
-            this.polling = setInterval(this.fetchGameState, 10000);
+            this.polling = setInterval(this.fetchGameState, 5000);
         },
         stopPolling() {
             if (this.polling) {

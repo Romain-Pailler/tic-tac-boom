@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p>Joueur 1 : {{ playerNames.player1 }}</p>
-        <p v-if="playerNames.player2">Joueur 2 : {{ playerNames.player2 }}</p>
+        <p>Joueur 1 : {{ playerNames.player1.username }} (X)</p>
+        <p v-if="playerNames.player2">Joueur 2 : {{ playerNames.player2.username }} (O)</p>
         <p v-else>En attente d'un joueur...</p>
         <p v-if="!winner">Au tour de : {{ currentPlayerName }}</p>
         <p v-if="winner">Le gagnant est : {{ winner }}</p>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 export default {
     props: {
         playerNames: Object,
@@ -18,10 +19,10 @@ export default {
     },
     computed: {
         currentPlayerName() {
-            return this.currentPlayer === this.playerNames.player1
+            return this.currentPlayer === this.playerNames.player1.id
                 ? 'Joueur 1'
                 : 'Joueur 2';
-        },
+        }
     },
 };
 </script>

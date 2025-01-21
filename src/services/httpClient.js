@@ -42,8 +42,6 @@ const request = async (
     ? await response.json()
     : null;
     } catch (error) {
-    // Gestion des erreurs
-    console.error('API Error:', error);
     throw error;
     }
     };
