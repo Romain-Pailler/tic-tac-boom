@@ -1,5 +1,8 @@
 <template>
     <div class="board">
+        <!-- Affichage d'un message d'erreur si ce n'est pas à votre tour -->
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+        
         <div v-for="(row, rowIndex) in formattedBoard" :key="rowIndex" class="row">
             <div
                 v-for="(cell, colIndex) in row"
@@ -28,7 +31,12 @@ export default {
             type: String,
             required: true,
         },
-        players:Object
+        players: Object
+    },
+    data() {
+        return {
+            errorMessage: "",
+        };
     },
     computed: {
         /**
@@ -57,7 +65,6 @@ export default {
                 return false;
             }
 
-            this.waiting = false; 
             const isCurrentPlayerValid = this.currentPlayer === this.players.player1 || this.currentPlayer === this.players.player2;
             return (
                 !this.board[rowIndex][colIndex] && isCurrentPlayerValid
@@ -69,12 +76,15 @@ export default {
          * @param {number} colIndex - Index de la colonne.
          */
         play(rowIndex, colIndex) {
+            if (this.currentPlayer !== this.players.player1 && this.currentPlayer !== this.players.player2) {
+                this.errorMessage = "Ce n'est pas votre tour, vous ne pouvez pas jouer.";
+                return;
+            }
+
             if (this.canPlay(rowIndex, colIndex)) {
                 this.$emit("play", { row: rowIndex, col: colIndex });
-            } else if (this.currentPlayer !== this.players.player1 && this.currentPlayer !== this.players.player2) {
-                console.warn("Vous n'êtes pas un joueur autorisé pour cette partie.");
             } else {
-                console.log("Case non jouable ou clic ignoré.");
+                this.errorMessage = "Cette case est déjà occupée.";
             }
         },
     },
@@ -82,6 +92,11 @@ export default {
 </script>
 
 <style>
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 .board {
     display: grid;
     gap: 5px;
