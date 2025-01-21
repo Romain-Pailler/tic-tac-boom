@@ -16,14 +16,15 @@
             {{ errorMessage }}
         </div>
         <div>
-            <button @click="newGame">Créer une partie</button>
+            <button @click="newGame">New Game</button>
+            <button @click="fetchGames">Refresh</button>
         </div>
     </div>
 </template>
 
 <script>
 import { getUserIdentity } from '@/services/AuthProvider.js';
-import { createGames, deleteGames, getGames, joinGames, getGamesById } from '@/services/httpClient';
+import { createGames, deleteGames, getGames, getGamesById, joinGames } from '@/services/httpClient';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();

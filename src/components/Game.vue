@@ -78,7 +78,7 @@ export default {
                 this.winner = game.winner;
                 this.players.player1.id = game.player1;
 
-                this.players.player2.id = game.player2 || null;
+                this.players.player2.id = game.player2 || undefined;
                 this.getPlayersNames();
                 if (this.isBoardFull() && !this.winner) {
                     this.winner = "Égalité";
