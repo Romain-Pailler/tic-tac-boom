@@ -69,7 +69,7 @@ export default {
 
                 const newBoard = this.formatBoard(game.board);
                 if (newBoard && newBoard.length === 3) {
-                    this.board = newBoard;
+                    this.board = newBoard;  
                 } else {
                     console.warn("Données de tableau invalides :", game.board);
                 }
@@ -79,6 +79,14 @@ export default {
                     player1: game.player1,
                     player2: game.player2 || "En attente...",
                 };
+
+                if (this.isBoardFull() && !this.winner) {
+                    this.winner = "Égalité";
+                }
+
+                if (this.winner) {
+                    this.stopPolling();
+                }
             } catch (error) {
                 this.error = 'Erreur lors de la récupération des données.';
                 console.error(error);
@@ -116,6 +124,10 @@ export default {
                 this.polling = null;
             }
         },
+
+        isBoardFull() {
+            return this.board.every(row => row.every(cell => cell !== null));
+        }
     },
 };
 </script>

@@ -53,8 +53,14 @@ export default {
          * @returns {boolean} - True si la case est jouable, sinon false.
          */
         canPlay(rowIndex, colIndex) {
+            if (this.players.player2 === "En attente...") {
+                return false;
+            }
+
+            this.waiting = false; 
+            const isCurrentPlayerValid = this.currentPlayer === this.players.player1 || this.currentPlayer === this.players.player2;
             return (
-                !this.board[rowIndex][colIndex] && this.currentPlayer && this?.player2 // Case vide et joueur valide
+                !this.board[rowIndex][colIndex] && isCurrentPlayerValid
             );
         },
         /**
@@ -65,6 +71,8 @@ export default {
         play(rowIndex, colIndex) {
             if (this.canPlay(rowIndex, colIndex)) {
                 this.$emit("play", { row: rowIndex, col: colIndex });
+            } else if (this.currentPlayer !== this.players.player1 && this.currentPlayer !== this.players.player2) {
+                console.warn("Vous n'êtes pas un joueur autorisé pour cette partie.");
             } else {
                 console.log("Case non jouable ou clic ignoré.");
             }
