@@ -50,8 +50,9 @@ export default {
     },
     async created() {
         this.gameId = this.$route.params.id; 
-        await this.fetchGameState(); 
         this.startPolling();
+        await this.fetchGameState(); 
+        
     },
     beforeUnmount() {
         this.stopPolling();
@@ -79,9 +80,10 @@ export default {
                 this.getPlayersNames();
                 if (this.isBoardFull() && !this.winner) {
                     this.winner = "Égalité";
+                    this.stopPolling();
                 }
 
-                if (this.winner) {
+                if (this.winner && this.winner !== "Égalité") {
                     this.getWinnerNames();
                     this.stopPolling();
                 }
