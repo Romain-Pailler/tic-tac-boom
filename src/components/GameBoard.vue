@@ -1,6 +1,6 @@
 <template>
     <div class="board">
-        <!-- Affichage d'un message d'erreur si ce n'est pas à votre tour -->
+        
         <div v-if="!isYourTurn" class="error-message">{{ errorMessage }}</div>
         
         <div v-for="(row, rowIndex) in formattedBoard" :key="rowIndex" class="row">
@@ -40,10 +40,6 @@ export default {
         };
     },
     computed: {
-        /**
-         * Transforme les valeurs du board pour afficher "X" ou "O" au lieu des IDs.
-         * @returns {Array} Le tableau formaté.
-         */
         formattedBoard() {
             return this.board.map(row =>
                 row.map(cell => {
@@ -55,12 +51,6 @@ export default {
         },
     },
     methods: {
-        /**
-         * Vérifie si un joueur peut jouer à une position donnée.
-         * @param {number} rowIndex - Index de la ligne.
-         * @param {number} colIndex - Index de la colonne.
-         * @returns {boolean} - True si la case est jouable, sinon false.
-         */
         canPlay(rowIndex, colIndex) {
             if (this.players.player2.username === "En attente...") {
                 return false;
@@ -70,11 +60,6 @@ export default {
                 !this.board[rowIndex][colIndex] && isCurrentPlayerValid
             );
         },
-        /**
-         * Gestion du clic sur une case.
-         * @param {number} rowIndex - Index de la ligne.
-         * @param {number} colIndex - Index de la colonne.
-         */
         play(rowIndex, colIndex) {
             if (this.canPlay(rowIndex, colIndex)) {
                 this.$emit("play", { row: rowIndex, col: colIndex });

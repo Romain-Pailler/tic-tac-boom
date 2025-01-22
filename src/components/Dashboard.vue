@@ -34,7 +34,7 @@ export default {
         return {
             username: '',
             allGames: [],
-            errorMessage: '',  // Ajout d'un état pour le message d'erreur
+            errorMessage: '', 
         };
     },
     async mounted() {
@@ -61,14 +61,14 @@ export default {
         async deleteGames(id) {
             try {
                 const gameDetails = await getGamesById(id);
-                // Vérifier si l'utilisateur connecté est le créateur de la partie
+                
                 if (gameDetails.player1 !== getUserIdentity().id) {
-                    // Si ce n'est pas le créateur, afficher un message d'erreur
+                    
                     this.errorMessage = "Vous n'êtes pas le créateur de cette partie, impossible de la supprimer.";
                 } else {
-                    // Si c'est le créateur, procéder à la suppression
+                    
                     await deleteGames(id);
-                    await this.fetchGames(); // Actualiser la liste des jeux
+                    await this.fetchGames(); 
                 }
             } catch (error) {
                 console.error('Erreur lors de la suppression de la partie:', error);

@@ -1,8 +1,6 @@
-// game.vue
 <template>
     <div>
         <h1>Tic Tac Toe</h1>
-        <!-- Composant player-info -->
         <player-info 
             :playerNames="players" 
             :currentPlayer="currentPlayer" 
@@ -18,7 +16,6 @@
             :isYourTurn="canPlay"
             @play="handlePlay" 
         />
-        <!-- Message d'erreur si une erreur survient -->
         <p v-if="error" class="error">{{ error }}</p>
     </div>
 </template>
