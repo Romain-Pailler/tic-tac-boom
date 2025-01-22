@@ -85,6 +85,7 @@ export default {
                 }
 
                 if (this.winner) {
+                    this.getWinnerNames();
                     this.stopPolling();
                 }
             } catch (error) {
@@ -103,6 +104,10 @@ export default {
             }else{
                 this.players.player2.username = "En attente...";
             }
+        },
+        async getWinnerNames(){
+            const winner = await getUser(this.winner);
+            this.winner = winner.username;
         },
         formatBoard(flatBoard) {
             return [

@@ -20,8 +20,8 @@ export default {
     computed: {
         currentPlayerName() {
             return this.currentPlayer === this.playerNames.player1.id
-                ? 'Joueur 1'
-                : 'Joueur 2';
+                ? this.playerNames.player1.username
+                : this.playerNames.player2.username;
         }
     },
 };
